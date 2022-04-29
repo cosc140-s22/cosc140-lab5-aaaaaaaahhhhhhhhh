@@ -1,22 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section>
-<p class="lead">New review for {{product.name}}</p>
-</section>
-
-<section>
-
-{# Add new review form here #}
-
-</section>
-
+  <section>
+    <p class="lead">New review for {{product.name}}</p>
+  </section>
+  
+  <form action="{% url 'createreview' product.id %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit">
+  </form>
+  </section>
 {% endblock %}
 
 {% block footer %}
-<br>
-<div>
-<a class="btn btn-sm btn-primary" href="{% url 'show' product.id %}">Back to toy details</a>
-<a class="btn btn-sm btn-primary" href="{% url 'index' %}">Back to all toys</a>
-</div>
+  <br>
+  <div>
+    <a class="btn btn-sm btn-primary" href="{% url 'show' product.id %}">Back to toy details</a>
+    <a class="btn btn-sm btn-primary" href="{% url 'index' %}">Back to all toys</a>
+  </div>
 {% endblock %}
